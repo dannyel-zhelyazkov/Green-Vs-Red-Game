@@ -1,16 +1,22 @@
 package io.devjun.greenvsred.models;
 
 public class TargetCell extends Cell {
-
-	private static TargetCell instance;
+	/* instance of the singleton declaration */
+	private volatile static TargetCell INSTANCE;
+	
 	private int timesBeingGreen;
 
-	public static TargetCell init(int color, int x, int y) {
-		if (instance == null) {
-			return new TargetCell(color, x, y);
+	/* Access point to the unique instance of the singleton */
+	public static TargetCell getInstance(int color, int x, int y) {
+		if (INSTANCE == null) {
+			synchronized (Field.class) {
+				if (INSTANCE == null) {
+					INSTANCE = new TargetCell(color, x, y);
+				}
+			}
 		}
 
-		return instance;
+		return INSTANCE;
 	}
 
 	private TargetCell(int color, int x, int y) {

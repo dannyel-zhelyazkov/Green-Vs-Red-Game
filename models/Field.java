@@ -6,24 +6,31 @@ import java.util.List;
 import io.devjun.greenvsred.consts.GameConstants;
 
 public class Field {
-	private static Field instance;
+	/* instance of the singleton declaration */
+	private volatile static Field INSTANCE;
+
 	private int width;
 	private int height;
 	private List<Cell> cells;
 	private TargetCell targetCell;
-	
-	public static Field init() {
-		if(instance == null) {
-			return new Field();
+
+	/* Access point to the unique instance of the singleton */
+	public static Field getInstance() {
+		if (INSTANCE == null) {
+			synchronized (Field.class) {
+				if (INSTANCE == null) {
+					INSTANCE = new Field();
+				}
+			}
 		}
 		
-		return instance;
+		return INSTANCE;
 	}
-	
+
 	private Field() {
 		this.cells = new ArrayList<>();
 	}
-	
+
 	public int getWidth() {
 		return width;
 	}
@@ -47,15 +54,15 @@ public class Field {
 
 		this.height = height;
 	}
-	
+
 	public List<Cell> getCells() {
 		return this.cells;
 	}
-	
+
 	public TargetCell getTargetCell() {
 		return targetCell;
 	}
-	
+
 	public void setTargetCell(TargetCell targetCell) {
 		this.targetCell = targetCell;
 	}

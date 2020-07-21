@@ -20,7 +20,7 @@ public class CellServiceImpl implements CellService {
 
 	@Override
 	public TargetCell createTargetCell(int color, int x, int y) {
-		return TargetCell.init(color, x, y);
+		return TargetCell.getInstance(color, x, y);
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ public class FieldServiceImpl implements FieldService {
 	private Field field;
 
 	public FieldServiceImpl() {
-		this.field = Field.init();
+		this.field = Field.getInstance();
 	}
 
 	@Override
