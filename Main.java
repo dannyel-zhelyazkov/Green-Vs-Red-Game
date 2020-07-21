@@ -9,7 +9,7 @@ public class Main {
 		// Engine class 
 		GreenVsRedGame game = new GreenVsRedGame();
 		
-		// Main logig is here
+		// The main logic
 		game.run();
 	}
 }
